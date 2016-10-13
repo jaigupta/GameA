@@ -27,8 +27,8 @@ public class GameA extends ApplicationAdapter implements InputProcessor {
   private static final int SM_MID_BODY_SIZE = SM_HEIGHT - 2*SM_FACE_RAIUS - SM_LOWER_BODY_SIZE;
   private static final int UPPER_INVI_SIZE = SM_HEIGHT-2*SM_FACE_RAIUS-SM_WIDTH;
   private static final float REJOIN_ACC = 0.1f;
-	private float screenWidth;
-	private float screenHeight;
+  private float screenWidth;
+  private float screenHeight;
   private SpriteBatch sb;
   private World world;
   private Body body;
@@ -41,10 +41,10 @@ public class GameA extends ApplicationAdapter implements InputProcessor {
   private static short MASK_SM_BODY = CATEGORY_BASE;
   private static short MASK_BASE = CATEGORY_SM_BODY;
 
-	public GameA() {}
+  public GameA() {}
 
-	@Override
-	public void create () {
+  @Override
+  public void create () {
     sb = new SpriteBatch();
     this.screenWidth = Gdx.graphics.getWidth();
     this.screenHeight = Gdx.graphics.getHeight();
@@ -119,24 +119,24 @@ public class GameA extends ApplicationAdapter implements InputProcessor {
     debugRenderer = new Box2DDebugRenderer();
     Gdx.input.setInputProcessor(this);
     camera = new OrthographicCamera(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
-	}
+  }
 
-	@Override
-	public void render () {
-    Gdx.gl.glClearColor(1, 1, 1, 1);
-    Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-    camera.update();
-    head.setLinearVelocity(
-        inviBodyPart.getPosition()
-            .add(new Vector2(0, SM_FACE_RAIUS + SM_MID_BODY_SIZE))
-            .sub(head.getPosition())
-            .limit(300));
-    // Step the physics simulation forward at a rate of 60hz
-    world.step(1f / 60f, 6, 2);
+  @Override
+  public void render () {
+  Gdx.gl.glClearColor(1, 1, 1, 1);
+  Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+  camera.update();
+  head.setLinearVelocity(
+      inviBodyPart.getPosition()
+          .add(new Vector2(0, SM_FACE_RAIUS + SM_MID_BODY_SIZE))
+          .sub(head.getPosition())
+          .limit(300));
+  // Step the physics simulation forward at a rate of 60hz
+  world.step(1f / 60f, 6, 2);
 
-    debugRenderer.render(world, camera.combined);
+  debugRenderer.render(world, camera.combined);
 
-	}
+  }
 
   @Override
   public boolean keyDown(int keycode) {
